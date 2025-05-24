@@ -4,3 +4,5 @@ urllib3>=2.0.0
 python-dotenv>=1.0.0
 Pillow>=10.0.0  # Required for CustomTkinter
 beautifulsoup4>=4.12.0  # Required for video extraction
+m3u8>=3.5.0  # Required for HLS playlist parsing
+ffmpeg-python>=0.2.0  # Required for video processing

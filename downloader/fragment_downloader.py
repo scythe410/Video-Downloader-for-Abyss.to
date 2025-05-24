@@ -6,114 +6,159 @@ import requests
 import os
 import base64
 import json
-from urllib.parse import urljoin
+import time
+from urllib.parse import urljoin, urlparse
+import m3u8
 
 class FragmentDownloader:
     def __init__(self):
         self.session = requests.Session()
         self.session.headers.update({
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+            'Origin': 'https://abyss.to',
+            'Referer': 'https://abyss.to/',
+            'Accept': '*/*',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Sec-Fetch-Dest': 'empty',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'same-origin'
         })
-    
-    def download_video(self, video_id, quality, download_dir, progress_callback=None):
-        """Download video by ID"""
-        try:
-            # Get video information
-            video_info = self.get_video_info(video_id)
-            if not video_info:
-                return False
-            
-            # Get fragment URLs
-            fragments = self.get_fragment_urls(video_id, quality)
-            if not fragments:
-                return False
-            
-            # Download fragments
-            return self.download_fragments(fragments, video_id, download_dir, progress_callback)
-            
-        except Exception as e:
-            print(f"Download error: {e}")
-            return False
+        self.base_url = "https://abyss.to"
+        self.api_url = "https://api.abyss.to"
     
     def get_video_info(self, video_id):
-        """Get video metadata"""
+        """Get video metadata and available qualities"""
         try:
-            info_url = f"https://player-cdn.com/?v={video_id}"
+            info_url = f"{self.api_url}/videos/{video_id}/info"
             response = self.session.get(info_url)
+            response.raise_for_status()
             
-            # Extract encoded video info
-            atob_pattern = r'atob\("([^"]+)"\)'
-            match = re.search(atob_pattern, response.text)
-            
-            if match:
-                video_info = base64.b64decode(match.group(1)).decode('utf-8')
-                return json.loads(video_info)
-            
-            return None
+            data = response.json()
+            if not data.get('success'):
+                raise ValueError(f"Failed to get video info: {data.get('message', 'Unknown error')}")
+                
+            return data['data']
             
         except Exception as e:
-            print(f"Error getting video info: {e}")
-            return None
+            raise Exception(f"Failed to get video info: {str(e)}")
     
-    def get_fragment_urls(self, video_id, quality):
-        """Get list of video fragment URLs"""
-        # Implementation depends on current abyss.to structure
-        # This is a placeholder that should be updated based on actual API
+    def get_fragment_urls(self, video_id, quality='auto'):
+        """Get HLS playlist and fragment URLs"""
         try:
-            manifest_url = f"https://api.hydrax.net/video/{video_id}/manifest"
-            response = self.session.get(manifest_url)
+            # Get stream URL
+            stream_url = f"{self.api_url}/videos/{video_id}/stream"
+            response = self.session.get(stream_url)
+            response.raise_for_status()
             
-            # Parse manifest to get fragment URLs
-            fragments = []
-            # Add actual parsing logic here
+            data = response.json()
+            if not data.get('success'):
+                raise ValueError(f"Failed to get stream URL: {data.get('message', 'Unknown error')}")
             
-            return fragments
+            # Get master playlist
+            playlist_url = data['data']['url']
+            response = self.session.get(playlist_url)
+            response.raise_for_status()
+            
+            master_playlist = m3u8.loads(response.text)
+            
+            # Select quality
+            selected_playlist = None
+            if quality == 'auto':
+                # Choose highest quality
+                selected_playlist = sorted(
+                    master_playlist.playlists,
+                    key=lambda p: p.stream_info.resolution[0] if p.stream_info.resolution else 0,
+                    reverse=True
+                )[0]
+            else:
+                # Find closest matching quality
+                target_height = int(quality.rstrip('p'))
+                selected_playlist = min(
+                    master_playlist.playlists,
+                    key=lambda p: abs(p.stream_info.resolution[1] - target_height) if p.stream_info.resolution else float('inf')
+                )
+            
+            # Get fragment playlist
+            response = self.session.get(selected_playlist.uri)
+            response.raise_for_status()
+            
+            fragment_playlist = m3u8.loads(response.text)
+            base_url = os.path.dirname(selected_playlist.uri) + '/'
+            
+            return [{
+                'url': urljoin(base_url, segment.uri),
+                'duration': segment.duration
+            } for segment in fragment_playlist.segments]
             
         except Exception as e:
-            print(f"Error getting fragments: {e}")
-            return []
+            raise Exception(f"Failed to get fragment URLs: {str(e)}")
     
-    def download_fragments(self, fragments, video_id, download_dir, progress_callback):
-        """Download and combine video fragments"""
+    def download_video(self, video_id, quality='auto', download_dir=None, progress_callback=None):
+        """Download video by ID"""
         try:
-            os.makedirs(download_dir, exist_ok=True)
+            if not download_dir:
+                download_dir = os.getcwd()
+            
+            # Create temp directory for fragments
             temp_dir = os.path.join(download_dir, f"temp_{video_id}")
             os.makedirs(temp_dir, exist_ok=True)
             
-            fragment_files = []
+            # Get video information
+            video_info = self.get_video_info(video_id)
+            output_filename = f"{video_id}_{int(time.time())}.mp4"
+            output_path = os.path.join(download_dir, output_filename)
+            
+            # Get fragment URLs
+            fragments = self.get_fragment_urls(video_id, quality)
             total_fragments = len(fragments)
             
-            for i, fragment_url in enumerate(fragments):
+            if progress_callback:
+                progress_callback(0, total_fragments)
+            
+            # Download fragments
+            fragment_paths = []
+            for i, fragment in enumerate(fragments, 1):
+                fragment_path = os.path.join(temp_dir, f"fragment_{i}.ts")
+                fragment_paths.append(fragment_path)
+                
+                response = self.session.get(fragment['url'], stream=True)
+                response.raise_for_status()
+                
+                with open(fragment_path, 'wb') as f:
+                    for chunk in response.iter_content(chunk_size=8192):
+                        if chunk:
+                            f.write(chunk)
+                
                 if progress_callback:
-                    progress = (i + 1) / total_fragments
-                    progress_callback(progress, f"Downloading fragment {i+1}/{total_fragments}")
-                
-                # Download fragment
-                response = self.session.get(fragment_url, timeout=30)
-                fragment_file = os.path.join(temp_dir, f"fragment_{i:04d}.mp4")
-                
-                with open(fragment_file, 'wb') as f:
-                    f.write(response.content)
-                
-                fragment_files.append(fragment_file)
+                    progress_callback(i, total_fragments)
             
             # Combine fragments
-            output_file = os.path.join(download_dir, f"video_{video_id}.mp4")
-            self.combine_fragments(fragment_files, output_file)
+            with open(output_path, 'wb') as outfile:
+                for fragment_path in fragment_paths:
+                    with open(fragment_path, 'rb') as infile:
+                        outfile.write(infile.read())
             
-            # Cleanup temp files
-            import shutil
-            shutil.rmtree(temp_dir)
+            # Clean up temp files
+            for fragment_path in fragment_paths:
+                try:
+                    os.remove(fragment_path)
+                except:
+                    pass
+            try:
+                os.rmdir(temp_dir)
+            except:
+                pass
             
-            return True
+            return output_path
             
         except Exception as e:
-            print(f"Error downloading fragments: {e}")
-            return False
-    
-    def combine_fragments(self, fragment_files, output_file):
-        """Combine video fragments"""
-        with open(output_file, 'wb') as outfile:
-            for fragment_file in fragment_files:
-                with open(fragment_file, 'rb') as infile:
-                    outfile.write(infile.read())
+            raise Exception(f"Failed to download video: {str(e)}")
+            
+        finally:
+            # Ensure temp directory is cleaned up
+            if 'temp_dir' in locals():
+                try:
+                    import shutil
+                    shutil.rmtree(temp_dir, ignore_errors=True)
+                except:
+                    pass
