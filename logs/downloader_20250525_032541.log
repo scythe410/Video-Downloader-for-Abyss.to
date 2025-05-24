@@ -1,0 +1,8 @@
+2025-05-25 03:25:41,625 - video_downloader - INFO - Application initialized
+2025-05-25 03:25:44,459 - video_downloader - INFO - Starting download from URL: https://asmrfree.com/soph-stardust-asmr-mommy-milkers-patreon-leak/
+2025-05-25 03:25:44,468 - video_downloader - ERROR - Download failed: 'VideoExtractor' object has no attribute 'extract_video_info'
+Traceback (most recent call last):
+  File "d:\Video Fetcher\gui\main_window.py", line 186, in download_video
+    video_info = self.video_extractor.extract_video_info(url)
+AttributeError: 'VideoExtractor' object has no attribute 'extract_video_info'
+

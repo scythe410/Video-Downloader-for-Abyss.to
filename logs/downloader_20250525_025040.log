@@ -1,0 +1,81 @@
+2025-05-25 02:50:40,503 - video_downloader - INFO - Application initialized
+2025-05-25 02:50:43,974 - video_downloader - INFO - Starting download from URL: https://asmrfree.com/soph-stardust-asmr-mommy-milkers-patreon-leak/
+2025-05-25 02:50:43,984 - video_downloader - INFO - Fetching webpage: https://asmrfree.com/soph-stardust-asmr-mommy-milkers-patreon-leak/
+2025-05-25 02:50:43,995 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): asmrfree.com:443
+2025-05-25 02:50:44,840 - urllib3.connectionpool - DEBUG - https://asmrfree.com:443 "GET /soph-stardust-asmr-mommy-milkers-patreon-leak/ HTTP/1.1" 200 None
+2025-05-25 02:50:45,065 - video_downloader - INFO - Page status code: 200
+2025-05-25 02:50:45,101 - video_downloader - INFO - Found 1 iframes
+2025-05-25 02:50:45,104 - video_downloader - INFO - Found iframe src: https://asmrfreeplayer.fun/?v=DdNXht0lZ
+2025-05-25 02:50:45,104 - video_downloader - INFO - Found player URL: https://asmrfreeplayer.fun/?v=DdNXht0lZ
+2025-05-25 02:50:45,104 - video_downloader - INFO - Extracted video ID: DdNXht0lZ
+2025-05-25 02:50:45,104 - video_downloader - INFO - Trying video URL: https://cdn.asmrfree.fun/videos/DdNXht0lZ/DdNXht0lZ.mp4
+2025-05-25 02:50:45,104 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): cdn.asmrfree.fun:443
+2025-05-25 02:50:45,208 - video_downloader - DEBUG - URL https://cdn.asmrfree.fun/videos/DdNXht0lZ/DdNXht0lZ.mp4 failed: HTTPSConnectionPool(host='cdn.asmrfree.fun', port=443): Max retries exceeded with url: /videos/DdNXht0lZ/DdNXht0lZ.mp4 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002C768DD09D0>: Failed to resolve 'cdn.asmrfree.fun' ([Errno 11001] getaddrinfo failed)"))
+2025-05-25 02:50:45,208 - video_downloader - INFO - Trying video URL: https://cdn.asmrfree.fun/videos/DdNXht0lZ/video.mp4
+2025-05-25 02:50:45,209 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (2): cdn.asmrfree.fun:443
+2025-05-25 02:50:45,210 - video_downloader - DEBUG - URL https://cdn.asmrfree.fun/videos/DdNXht0lZ/video.mp4 failed: HTTPSConnectionPool(host='cdn.asmrfree.fun', port=443): Max retries exceeded with url: /videos/DdNXht0lZ/video.mp4 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002C768DD0D30>: Failed to resolve 'cdn.asmrfree.fun' ([Errno 11001] getaddrinfo failed)"))
+2025-05-25 02:50:45,210 - video_downloader - INFO - Trying video URL: https://cdn.asmrfree.fun/videos/DdNXht0lZ/index.m3u8
+2025-05-25 02:50:45,211 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (3): cdn.asmrfree.fun:443
+2025-05-25 02:50:45,212 - video_downloader - DEBUG - URL https://cdn.asmrfree.fun/videos/DdNXht0lZ/index.m3u8 failed: HTTPSConnectionPool(host='cdn.asmrfree.fun', port=443): Max retries exceeded with url: /videos/DdNXht0lZ/index.m3u8 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002C768DD0FD0>: Failed to resolve 'cdn.asmrfree.fun' ([Errno 11001] getaddrinfo failed)"))
+2025-05-25 02:50:45,212 - video_downloader - INFO - Trying video URL: https://cdn.asmrfree.fun/hls/DdNXht0lZ/index.m3u8
+2025-05-25 02:50:45,214 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (4): cdn.asmrfree.fun:443
+2025-05-25 02:50:45,215 - video_downloader - DEBUG - URL https://cdn.asmrfree.fun/hls/DdNXht0lZ/index.m3u8 failed: HTTPSConnectionPool(host='cdn.asmrfree.fun', port=443): Max retries exceeded with url: /hls/DdNXht0lZ/index.m3u8 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002C768DD13C0>: Failed to resolve 'cdn.asmrfree.fun' ([Errno 11001] getaddrinfo failed)"))
+2025-05-25 02:50:45,216 - video_downloader - INFO - Trying video URL: https://cdn2.asmrfree.fun/videos/DdNXht0lZ/DdNXht0lZ.mp4
+2025-05-25 02:50:45,219 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): cdn2.asmrfree.fun:443
+2025-05-25 02:50:45,275 - video_downloader - DEBUG - URL https://cdn2.asmrfree.fun/videos/DdNXht0lZ/DdNXht0lZ.mp4 failed: HTTPSConnectionPool(host='cdn2.asmrfree.fun', port=443): Max retries exceeded with url: /videos/DdNXht0lZ/DdNXht0lZ.mp4 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002C768DD18A0>: Failed to resolve 'cdn2.asmrfree.fun' ([Errno 11001] getaddrinfo failed)"))
+2025-05-25 02:50:45,275 - video_downloader - INFO - Trying video URL: https://cdn2.asmrfree.fun/videos/DdNXht0lZ/video.mp4
+2025-05-25 02:50:45,285 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (2): cdn2.asmrfree.fun:443
+2025-05-25 02:50:45,285 - video_downloader - DEBUG - URL https://cdn2.asmrfree.fun/videos/DdNXht0lZ/video.mp4 failed: HTTPSConnectionPool(host='cdn2.asmrfree.fun', port=443): Max retries exceeded with url: /videos/DdNXht0lZ/video.mp4 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002C768DD1C00>: Failed to resolve 'cdn2.asmrfree.fun' ([Errno 11001] getaddrinfo failed)"))
+2025-05-25 02:50:45,285 - video_downloader - INFO - Trying video URL: https://cdn2.asmrfree.fun/videos/DdNXht0lZ/index.m3u8
+2025-05-25 02:50:45,290 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (3): cdn2.asmrfree.fun:443
+2025-05-25 02:50:45,290 - video_downloader - DEBUG - URL https://cdn2.asmrfree.fun/videos/DdNXht0lZ/index.m3u8 failed: HTTPSConnectionPool(host='cdn2.asmrfree.fun', port=443): Max retries exceeded with url: /videos/DdNXht0lZ/index.m3u8 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002C768DD1F30>: Failed to resolve 'cdn2.asmrfree.fun' ([Errno 11001] getaddrinfo failed)"))
+2025-05-25 02:50:45,290 - video_downloader - INFO - Trying video URL: https://cdn2.asmrfree.fun/hls/DdNXht0lZ/index.m3u8
+2025-05-25 02:50:45,292 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (4): cdn2.asmrfree.fun:443
+2025-05-25 02:50:45,293 - video_downloader - DEBUG - URL https://cdn2.asmrfree.fun/hls/DdNXht0lZ/index.m3u8 failed: HTTPSConnectionPool(host='cdn2.asmrfree.fun', port=443): Max retries exceeded with url: /hls/DdNXht0lZ/index.m3u8 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002C768DD2260>: Failed to resolve 'cdn2.asmrfree.fun' ([Errno 11001] getaddrinfo failed)"))
+2025-05-25 02:50:45,293 - video_downloader - INFO - Trying video URL: https://cdn3.asmrfree.fun/videos/DdNXht0lZ/DdNXht0lZ.mp4
+2025-05-25 02:50:45,296 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): cdn3.asmrfree.fun:443
+2025-05-25 02:50:45,355 - video_downloader - DEBUG - URL https://cdn3.asmrfree.fun/videos/DdNXht0lZ/DdNXht0lZ.mp4 failed: HTTPSConnectionPool(host='cdn3.asmrfree.fun', port=443): Max retries exceeded with url: /videos/DdNXht0lZ/DdNXht0lZ.mp4 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002C768DD2740>: Failed to resolve 'cdn3.asmrfree.fun' ([Errno 11001] getaddrinfo failed)"))
+2025-05-25 02:50:45,355 - video_downloader - INFO - Trying video URL: https://cdn3.asmrfree.fun/videos/DdNXht0lZ/video.mp4
+2025-05-25 02:50:45,355 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (2): cdn3.asmrfree.fun:443
+2025-05-25 02:50:45,355 - video_downloader - DEBUG - URL https://cdn3.asmrfree.fun/videos/DdNXht0lZ/video.mp4 failed: HTTPSConnectionPool(host='cdn3.asmrfree.fun', port=443): Max retries exceeded with url: /videos/DdNXht0lZ/video.mp4 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002C768DD2AA0>: Failed to resolve 'cdn3.asmrfree.fun' ([Errno 11001] getaddrinfo failed)"))
+2025-05-25 02:50:45,355 - video_downloader - INFO - Trying video URL: https://cdn3.asmrfree.fun/videos/DdNXht0lZ/index.m3u8
+2025-05-25 02:50:45,355 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (3): cdn3.asmrfree.fun:443
+2025-05-25 02:50:45,355 - video_downloader - DEBUG - URL https://cdn3.asmrfree.fun/videos/DdNXht0lZ/index.m3u8 failed: HTTPSConnectionPool(host='cdn3.asmrfree.fun', port=443): Max retries exceeded with url: /videos/DdNXht0lZ/index.m3u8 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002C768DD2320>: Failed to resolve 'cdn3.asmrfree.fun' ([Errno 11001] getaddrinfo failed)"))
+2025-05-25 02:50:45,355 - video_downloader - INFO - Trying video URL: https://cdn3.asmrfree.fun/hls/DdNXht0lZ/index.m3u8
+2025-05-25 02:50:45,362 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (4): cdn3.asmrfree.fun:443
+2025-05-25 02:50:45,363 - video_downloader - DEBUG - URL https://cdn3.asmrfree.fun/hls/DdNXht0lZ/index.m3u8 failed: HTTPSConnectionPool(host='cdn3.asmrfree.fun', port=443): Max retries exceeded with url: /hls/DdNXht0lZ/index.m3u8 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002C768DD2020>: Failed to resolve 'cdn3.asmrfree.fun' ([Errno 11001] getaddrinfo failed)"))
+2025-05-25 02:50:45,364 - video_downloader - INFO - Trying video URL: https://stream.asmrfree.fun/videos/DdNXht0lZ/DdNXht0lZ.mp4
+2025-05-25 02:50:45,365 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): stream.asmrfree.fun:443
+2025-05-25 02:50:45,424 - video_downloader - DEBUG - URL https://stream.asmrfree.fun/videos/DdNXht0lZ/DdNXht0lZ.mp4 failed: HTTPSConnectionPool(host='stream.asmrfree.fun', port=443): Max retries exceeded with url: /videos/DdNXht0lZ/DdNXht0lZ.mp4 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002C768DD1D50>: Failed to resolve 'stream.asmrfree.fun' ([Errno 11001] getaddrinfo failed)"))
+2025-05-25 02:50:45,424 - video_downloader - INFO - Trying video URL: https://stream.asmrfree.fun/videos/DdNXht0lZ/video.mp4
+2025-05-25 02:50:45,428 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (2): stream.asmrfree.fun:443
+2025-05-25 02:50:45,429 - video_downloader - DEBUG - URL https://stream.asmrfree.fun/videos/DdNXht0lZ/video.mp4 failed: HTTPSConnectionPool(host='stream.asmrfree.fun', port=443): Max retries exceeded with url: /videos/DdNXht0lZ/video.mp4 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002C768DD0B20>: Failed to resolve 'stream.asmrfree.fun' ([Errno 11001] getaddrinfo failed)"))
+2025-05-25 02:50:45,430 - video_downloader - INFO - Trying video URL: https://stream.asmrfree.fun/videos/DdNXht0lZ/index.m3u8
+2025-05-25 02:50:45,432 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (3): stream.asmrfree.fun:443
+2025-05-25 02:50:45,432 - video_downloader - DEBUG - URL https://stream.asmrfree.fun/videos/DdNXht0lZ/index.m3u8 failed: HTTPSConnectionPool(host='stream.asmrfree.fun', port=443): Max retries exceeded with url: /videos/DdNXht0lZ/index.m3u8 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002C768DD1690>: Failed to resolve 'stream.asmrfree.fun' ([Errno 11001] getaddrinfo failed)"))
+2025-05-25 02:50:45,433 - video_downloader - INFO - Trying video URL: https://stream.asmrfree.fun/hls/DdNXht0lZ/index.m3u8
+2025-05-25 02:50:45,436 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (4): stream.asmrfree.fun:443
+2025-05-25 02:50:45,439 - video_downloader - DEBUG - URL https://stream.asmrfree.fun/hls/DdNXht0lZ/index.m3u8 failed: HTTPSConnectionPool(host='stream.asmrfree.fun', port=443): Max retries exceeded with url: /hls/DdNXht0lZ/index.m3u8 (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000002C768DD1360>: Failed to resolve 'stream.asmrfree.fun' ([Errno 11001] getaddrinfo failed)"))
+2025-05-25 02:50:45,440 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): asmrfreeplayer.fun:443
+2025-05-25 02:50:46,350 - urllib3.connectionpool - DEBUG - https://asmrfreeplayer.fun:443 "GET /?v=DdNXht0lZ HTTP/1.1" 200 None
+2025-05-25 02:50:46,364 - video_downloader - ERROR - No video URL found. Page content saved to page_content.html
+2025-05-25 02:50:46,366 - video_downloader - ERROR - Error during extraction: No video URL found in the webpage
+Traceback (most recent call last):
+  File "d:\Video Fetcher\downloader\video_extractor.py", line 132, in extract_video_info
+    raise ValueError("No video URL found in the webpage")
+ValueError: No video URL found in the webpage
+2025-05-25 02:50:46,370 - video_downloader - ERROR - Download failed: Failed to extract video info: No video URL found in the webpage
+Traceback (most recent call last):
+  File "d:\Video Fetcher\downloader\video_extractor.py", line 132, in extract_video_info
+    raise ValueError("No video URL found in the webpage")
+ValueError: No video URL found in the webpage
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Video Fetcher\gui\main_window.py", line 186, in download_video
+    video_info = self.video_extractor.extract_video_info(url)
+  File "d:\Video Fetcher\downloader\video_extractor.py", line 136, in extract_video_info
+    raise Exception(f"Failed to extract video info: {str(e)}")
+Exception: Failed to extract video info: No video URL found in the webpage
+

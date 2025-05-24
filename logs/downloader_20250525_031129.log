@@ -1,0 +1,86 @@
+2025-05-25 03:11:29,637 - video_downloader - INFO - Application initialized
+2025-05-25 03:11:32,781 - video_downloader - INFO - Starting download from URL: https://asmrfree.com/soph-stardust-asmr-mommy-milkers-patreon-leak/
+2025-05-25 03:11:32,786 - video_downloader - INFO - Fetching webpage: https://asmrfree.com/soph-stardust-asmr-mommy-milkers-patreon-leak/
+2025-05-25 03:11:32,796 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): asmrfree.com:443
+2025-05-25 03:11:33,654 - urllib3.connectionpool - DEBUG - https://asmrfree.com:443 "GET /soph-stardust-asmr-mommy-milkers-patreon-leak/ HTTP/1.1" 200 None
+2025-05-25 03:11:33,863 - video_downloader - INFO - Page status code: 200
+2025-05-25 03:11:33,906 - video_downloader - INFO - Found player URL: https://asmrfreeplayer.fun/?v=DdNXht0lZ
+2025-05-25 03:11:33,906 - video_downloader - INFO - Found video ID: DdNXht0lZ
+2025-05-25 03:11:33,906 - video_downloader - INFO - Trying API endpoint: https://asmrfreeplayer.fun/api/source/DdNXht0lZ
+2025-05-25 03:11:33,906 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): asmrfreeplayer.fun:443
+2025-05-25 03:11:34,751 - urllib3.connectionpool - DEBUG - https://asmrfreeplayer.fun:443 "POST /api/source/DdNXht0lZ HTTP/1.1" 401 0
+2025-05-25 03:11:35,518 - urllib3.connectionpool - DEBUG - https://asmrfreeplayer.fun:443 "GET /?v=DdNXht0lZ HTTP/1.1" 200 None
+2025-05-25 03:11:35,518 - video_downloader - INFO - Found video URL from player page: https://iamcdn.net/player/jwplayer.min.js
+2025-05-25 03:11:35,518 - video_downloader - INFO - Video info extracted: {'video_id': 'jwplayer.min.js', 'source_url': 'https://iamcdn.net/player/jwplayer.min.js', 'webpage_url': 'https://asmrfree.com/soph-stardust-asmr-mommy-milkers-patreon-leak/'}
+2025-05-25 03:11:35,538 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): api.abyss.to:443
+2025-05-25 03:11:35,935 - video_downloader - ERROR - Download failed: Failed to download video: Failed to get video info: HTTPSConnectionPool(host='api.abyss.to', port=443): Max retries exceeded with url: /videos/jwplayer.min.js/info (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000182D7048D00>: Failed to resolve 'api.abyss.to' ([Errno 11001] getaddrinfo failed)"))
+Traceback (most recent call last):
+  File "C:\Users\Ramiru\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 198, in _new_conn
+    sock = connection.create_connection(
+  File "C:\Users\Ramiru\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "C:\Users\Ramiru\AppData\Local\Programs\Python\Python310\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Ramiru\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+  File "C:\Users\Ramiru\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 488, in _make_request
+    raise new_e
+  File "C:\Users\Ramiru\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\Ramiru\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "C:\Users\Ramiru\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 704, in connect
+    self.sock = sock = self._new_conn()
+  File "C:\Users\Ramiru\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connection.py", line 205, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: <urllib3.connection.HTTPSConnection object at 0x00000182D7048D00>: Failed to resolve 'api.abyss.to' ([Errno 11001] getaddrinfo failed)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Ramiru\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+  File "C:\Users\Ramiru\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+  File "C:\Users\Ramiru\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\util\retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.abyss.to', port=443): Max retries exceeded with url: /videos/jwplayer.min.js/info (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000182D7048D00>: Failed to resolve 'api.abyss.to' ([Errno 11001] getaddrinfo failed)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Video Fetcher\downloader\fragment_downloader.py", line 33, in get_video_info
+    response = self.session.get(info_url)
+  File "C:\Users\Ramiru\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+  File "C:\Users\Ramiru\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Ramiru\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Ramiru\AppData\Local\Programs\Python\Python310\lib\site-packages\requests\adapters.py", line 700, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.abyss.to', port=443): Max retries exceeded with url: /videos/jwplayer.min.js/info (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000182D7048D00>: Failed to resolve 'api.abyss.to' ([Errno 11001] getaddrinfo failed)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Video Fetcher\downloader\fragment_downloader.py", line 107, in download_video
+    video_info = self.get_video_info(video_id)
+  File "d:\Video Fetcher\downloader\fragment_downloader.py", line 43, in get_video_info
+    raise Exception(f"Failed to get video info: {str(e)}")
+Exception: Failed to get video info: HTTPSConnectionPool(host='api.abyss.to', port=443): Max retries exceeded with url: /videos/jwplayer.min.js/info (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000182D7048D00>: Failed to resolve 'api.abyss.to' ([Errno 11001] getaddrinfo failed)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Video Fetcher\gui\main_window.py", line 190, in download_video
+    output_path = self.fragment_downloader.download_video(
+  File "d:\Video Fetcher\downloader\fragment_downloader.py", line 155, in download_video
+    raise Exception(f"Failed to download video: {str(e)}")
+Exception: Failed to download video: Failed to get video info: HTTPSConnectionPool(host='api.abyss.to', port=443): Max retries exceeded with url: /videos/jwplayer.min.js/info (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x00000182D7048D00>: Failed to resolve 'api.abyss.to' ([Errno 11001] getaddrinfo failed)"))
+

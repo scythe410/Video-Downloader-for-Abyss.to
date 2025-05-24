@@ -1,0 +1,43 @@
+2025-05-25 02:43:44,334 - video_downloader - INFO - Application initialized
+2025-05-25 02:43:48,001 - video_downloader - INFO - Starting download from URL: https://asmrfree.com/soph-stardust-asmr-mommy-milkers-patreon-leak/
+2025-05-25 02:43:48,001 - video_downloader - INFO - Fetching webpage: https://asmrfree.com/soph-stardust-asmr-mommy-milkers-patreon-leak/
+2025-05-25 02:43:48,013 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): asmrfree.com:443
+2025-05-25 02:43:48,846 - urllib3.connectionpool - DEBUG - https://asmrfree.com:443 "GET /soph-stardust-asmr-mommy-milkers-patreon-leak/ HTTP/1.1" 200 None
+2025-05-25 02:43:49,035 - video_downloader - INFO - Page status code: 200
+2025-05-25 02:43:49,074 - video_downloader - INFO - Found 1 iframes
+2025-05-25 02:43:49,074 - video_downloader - INFO - Iframe src: https://asmrfreeplayer.fun/?v=DdNXht0lZ
+2025-05-25 02:43:49,075 - video_downloader - INFO - Found 0 video elements
+2025-05-25 02:43:49,075 - video_downloader - INFO - Found 23 script tags
+2025-05-25 02:43:49,077 - video_downloader - INFO - Found relevant script: {"@context":"https://schema.org","@graph":[{"@type":["Person","Organization"],"@id":"https://asmrfree.com/#person","name":"AsmrFree"},{"@type":"WebSite","@id":"https://asmrfree.com/#website","url":"ht...
+2025-05-25 02:43:49,173 - video_downloader - INFO - Method _find_direct_video_url found no video URL
+2025-05-25 02:43:49,173 - video_downloader - INFO - Method _extract_from_json_ld found no video URL
+2025-05-25 02:43:49,173 - video_downloader - INFO - Method _extract_from_video_config found no video URL
+2025-05-25 02:43:49,173 - video_downloader - INFO - Method _extract_from_data_attributes found no video URL
+2025-05-25 02:43:49,173 - video_downloader - INFO - Method _extract_from_scripts found no video URL
+2025-05-25 02:43:49,173 - video_downloader - INFO - Trying with alternate User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1
+2025-05-25 02:43:49,471 - urllib3.connectionpool - DEBUG - https://asmrfree.com:443 "GET /soph-stardust-asmr-mommy-milkers-patreon-leak/ HTTP/1.1" 200 None
+2025-05-25 02:43:49,524 - video_downloader - INFO - Trying with alternate User-Agent: Mozilla/5.0 (iPad; CPU OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1
+2025-05-25 02:43:49,765 - urllib3.connectionpool - DEBUG - https://asmrfree.com:443 "GET /soph-stardust-asmr-mommy-milkers-patreon-leak/ HTTP/1.1" 200 None
+2025-05-25 02:43:49,822 - video_downloader - INFO - Found post ID: 8590, trying AJAX request
+2025-05-25 02:43:50,472 - urllib3.connectionpool - DEBUG - https://asmrfree.com:443 "POST /wp-admin/admin-ajax.php HTTP/1.1" 400 None
+2025-05-25 02:43:50,472 - video_downloader - ERROR - No video URL found. Page content saved to page_content.html
+2025-05-25 02:43:50,472 - video_downloader - ERROR - Error during extraction: No video URL found in the webpage
+Traceback (most recent call last):
+  File "d:\Video Fetcher\downloader\video_extractor.py", line 120, in extract_video_info
+    raise ValueError("No video URL found in the webpage")
+ValueError: No video URL found in the webpage
+2025-05-25 02:43:50,472 - video_downloader - ERROR - Download failed: Failed to extract video info: No video URL found in the webpage
+Traceback (most recent call last):
+  File "d:\Video Fetcher\downloader\video_extractor.py", line 120, in extract_video_info
+    raise ValueError("No video URL found in the webpage")
+ValueError: No video URL found in the webpage
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Video Fetcher\gui\main_window.py", line 186, in download_video
+    video_info = self.video_extractor.extract_video_info(url)
+  File "d:\Video Fetcher\downloader\video_extractor.py", line 124, in extract_video_info
+    raise Exception(f"Failed to extract video info: {str(e)}")
+Exception: Failed to extract video info: No video URL found in the webpage
+

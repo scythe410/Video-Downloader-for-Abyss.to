@@ -1,32 +1,43 @@
 """
-Application configuration management
+Configuration management
 """
 
-import json
 import os
+import json
 
 class Config:
     def __init__(self):
         self.config_file = "config.json"
-        self.default_config = {
-            "download_directory": "./downloads",
-            "default_quality": "720p",
-            "max_retries": 3,
-            "timeout": 30
-        }
-        self.load_config()
+        self.config = self.load_config()
     
     def load_config(self):
         """Load configuration from file"""
-        try:
-            if os.path.exists(self.config_file):
+        if os.path.exists(self.config_file):
+            try:
                 with open(self.config_file, 'r') as f:
-                    self.config = json.load(f)
-            else:
-                self.config = self.default_config.copy()
-                self.save_config()
-        except Exception:
-            self.config = self.default_config.copy()
+                    return json.load(f)
+            except:
+                pass
+        return self.get_default_config()
+    
+    def get_default_config(self):
+        """Get default configuration"""
+        return {
+            'download_dir': os.path.expanduser("~/Downloads"),
+            'default_quality': 'auto',
+            'site_configs': {
+                'asmrfree.com': {
+                    'token_pattern': r'var\s+token\s*=\s*["\']([^"\']+)["\']',
+                    'post_id_pattern': r'post-(\d+)',
+                    'ajax_url': 'https://asmrfree.com/wp-admin/admin-ajax.php'
+                }
+            },
+            'headers': {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+                'Accept-Language': 'en-US,en;q=0.5'
+            }
+        }
     
     def save_config(self):
         """Save configuration to file"""
@@ -34,13 +45,13 @@ class Config:
             with open(self.config_file, 'w') as f:
                 json.dump(self.config, f, indent=4)
         except Exception as e:
-            print(f"Error saving config: {e}")
+            print(f"Failed to save config: {e}")
     
-    def get_download_directory(self):
-        """Get download directory"""
-        return self.config.get("download_directory", "./downloads")
+    def get(self, key, default=None):
+        """Get configuration value"""
+        return self.config.get(key, default)
     
-    def set_download_directory(self, directory):
-        """Set download directory"""
-        self.config["download_directory"] = directory
+    def set(self, key, value):
+        """Set configuration value"""
+        self.config[key] = value
         self.save_config()

@@ -6,3 +6,7 @@ Pillow>=10.0.0  # Required for CustomTkinter
 beautifulsoup4>=4.12.0  # Required for video extraction
 m3u8>=3.5.0  # Required for HLS playlist parsing
 ffmpeg-python>=0.2.0  # Required for video processing
+cloudscraper>=1.2.60
+selenium>=4.10.0  # Required for browser automation
+json5>=0.9.14  # Required for parsing player configs
+webdriver_manager>=4.0.0  # Required for ChromeDriver management

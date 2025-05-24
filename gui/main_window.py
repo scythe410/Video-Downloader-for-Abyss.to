@@ -7,11 +7,14 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 import threading
 import os
-import time
+import traceback
 
-from downloader.video_extractor import VideoExtractor
+from downloader.video_extractor import EnhancedVideoExtractor
 from downloader.fragment_downloader import FragmentDownloader
 from utils.config import Config
+from utils.logger import setup_logger
+
+logger = setup_logger()
 
 class VideoDownloaderApp(customtkinter.CTk):
     def __init__(self):
@@ -19,7 +22,7 @@ class VideoDownloaderApp(customtkinter.CTk):
         
         # Initialize components
         self.config = Config()
-        self.video_extractor = VideoExtractor()
+        self.video_extractor = EnhancedVideoExtractor()
         self.fragment_downloader = FragmentDownloader()
         
         # Configure window
@@ -28,6 +31,11 @@ class VideoDownloaderApp(customtkinter.CTk):
         
         # Download state
         self.current_download = None
+        
+        # Bind cleanup to window close
+        self.protocol("WM_DELETE_WINDOW", self.cleanup)
+        
+        logger.info("Application initialized")
     
     def setup_window(self):
         """Configure main window properties"""
@@ -175,8 +183,11 @@ class VideoDownloaderApp(customtkinter.CTk):
     def download_video(self, url, save_dir):
         """Download video in background thread"""
         try:
+            logger.info(f"Starting download from URL: {url}")
             self.status_label.configure(text="Extracting video information...")
+            
             video_info = self.video_extractor.extract_video_info(url)
+            logger.info(f"Video info extracted: {video_info}")
             
             self.status_label.configure(text="Starting download...")
             output_path = self.fragment_downloader.download_video(
@@ -186,12 +197,19 @@ class VideoDownloaderApp(customtkinter.CTk):
                 progress_callback=self.update_progress
             )
             
+            logger.info(f"Download completed: {output_path}")
             self.status_label.configure(text=f"Download complete! Saved to: {output_path}")
             messagebox.showinfo("Success", "Video downloaded successfully!")
             
         except Exception as e:
+            logger.error(f"Download failed: {str(e)}\n{traceback.format_exc()}")
             self.status_label.configure(text="Download failed!")
-            messagebox.showerror("Error", f"Download failed: {str(e)}")
+            error_message = str(e)
+            if "403" in error_message:
+                error_message = "Access denied. The website may be blocking automated access."
+            elif "404" in error_message:
+                error_message = "Video not found. It may have been removed or the URL is incorrect."
+            messagebox.showerror("Error", f"Download failed: {error_message}")
             
         finally:
             # Re-enable controls
@@ -209,3 +227,13 @@ class VideoDownloaderApp(customtkinter.CTk):
             if hasattr(self.fragment_downloader, 'cancel_download'):
                 self.fragment_downloader.cancel_download()
             self.status_label.configure(text="Cancelling download...")
+    
+    def cleanup(self):
+        """Clean up resources before closing"""
+        try:
+            if self.video_extractor and hasattr(self.video_extractor, 'selenium_driver') and self.video_extractor.selenium_driver:
+                self.video_extractor.selenium_driver.quit()
+        except Exception as e:
+            logger.warning(f"Error cleaning up Selenium driver: {e}")
+        finally:
+            self.quit()

@@ -5,6 +5,13 @@ Main application entry point
 
 import sys
 import os
+from pathlib import Path
+
+# Add the current directory to Python path
+current_dir = str(Path(__file__).parent.absolute())
+if current_dir not in sys.path:
+    sys.path.insert(0, current_dir)
+
 from gui.main_window import VideoDownloaderApp
 
 def main():
@@ -17,7 +24,4 @@ def main():
         sys.exit(1)
 
 if __name__ == "__main__":
-    # Add current directory to Python path
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    sys.path.insert(0, current_dir)
     main()

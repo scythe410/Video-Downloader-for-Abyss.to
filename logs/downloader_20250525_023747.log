@@ -1,0 +1,22 @@
+2025-05-25 02:37:47,908 - video_downloader - INFO - Application initialized
+2025-05-25 02:37:58,959 - video_downloader - INFO - Starting download from URL: https://asmrfree.com/soph-stardust-asmr-mommy-milkers-patreon-leak/
+2025-05-25 02:37:58,971 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): asmrfree.com:443
+2025-05-25 02:37:59,859 - urllib3.connectionpool - DEBUG - https://asmrfree.com:443 "GET /soph-stardust-asmr-mommy-milkers-patreon-leak/ HTTP/1.1" 200 None
+2025-05-25 02:38:00,476 - urllib3.connectionpool - DEBUG - https://asmrfree.com:443 "POST /wp-admin/admin-ajax.php HTTP/1.1" 400 None
+2025-05-25 02:38:00,476 - video_downloader - ERROR - Download failed: Failed to extract video info: 'VideoExtractor' object has no attribute '_extract_from_json_ld'
+Traceback (most recent call last):
+  File "D:\Video Fetcher\downloader\video_extractor.py", line 90, in extract_video_info
+    video_url = self._try_all_extraction_methods(html, webpage_url)
+  File "D:\Video Fetcher\downloader\video_extractor.py", line 148, in _try_all_extraction_methods
+    self._extract_from_json_ld,
+AttributeError: 'VideoExtractor' object has no attribute '_extract_from_json_ld'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Video Fetcher\gui\main_window.py", line 186, in download_video
+    video_info = self.video_extractor.extract_video_info(url)
+  File "D:\Video Fetcher\downloader\video_extractor.py", line 100, in extract_video_info
+    raise Exception(f"Failed to extract video info: {str(e)}")
+Exception: Failed to extract video info: 'VideoExtractor' object has no attribute '_extract_from_json_ld'
+

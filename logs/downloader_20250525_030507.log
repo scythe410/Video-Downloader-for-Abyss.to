@@ -1,0 +1,33 @@
+2025-05-25 03:05:08,022 - video_downloader - INFO - Application initialized
+2025-05-25 03:05:25,162 - video_downloader - INFO - Starting download from URL: https://asmrfree.com/soph-stardust-asmr-mommy-milkers-patreon-leak/
+2025-05-25 03:05:25,168 - video_downloader - INFO - Fetching webpage: https://asmrfree.com/soph-stardust-asmr-mommy-milkers-patreon-leak/
+2025-05-25 03:05:26,185 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): asmrfree.com:443
+2025-05-25 03:05:27,088 - urllib3.connectionpool - DEBUG - https://asmrfree.com:443 "GET /soph-stardust-asmr-mommy-milkers-patreon-leak/ HTTP/1.1" 200 None
+2025-05-25 03:05:27,298 - video_downloader - INFO - Page status code: 200
+2025-05-25 03:05:27,354 - video_downloader - INFO - Found post ID: 8590
+2025-05-25 03:05:28,852 - urllib3.connectionpool - DEBUG - https://asmrfree.com:443 "POST /wp-admin/admin-ajax.php HTTP/1.1" 400 None
+2025-05-25 03:05:30,426 - urllib3.connectionpool - DEBUG - https://asmrfree.com:443 "POST /wp-admin/admin-ajax.php HTTP/1.1" 400 None
+2025-05-25 03:05:31,811 - urllib3.connectionpool - DEBUG - https://asmrfree.com:443 "POST /wp-admin/admin-ajax.php HTTP/1.1" 400 None
+2025-05-25 03:05:31,816 - video_downloader - INFO - Checking player URL: https://asmrfreeplayer.fun/?v=DdNXht0lZ
+2025-05-25 03:05:32,823 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): asmrfreeplayer.fun:443
+2025-05-25 03:05:33,795 - urllib3.connectionpool - DEBUG - https://asmrfreeplayer.fun:443 "GET /?v=DdNXht0lZ HTTP/1.1" 200 None
+2025-05-25 03:05:33,815 - video_downloader - ERROR - Error during extraction: No video URL found in the webpage
+Traceback (most recent call last):
+  File "d:\Video Fetcher\downloader\video_extractor.py", line 211, in extract_video_info
+    raise ValueError("No video URL found in the webpage")
+ValueError: No video URL found in the webpage
+2025-05-25 03:05:33,817 - video_downloader - ERROR - Download failed: Failed to extract video info: No video URL found in the webpage
+Traceback (most recent call last):
+  File "d:\Video Fetcher\downloader\video_extractor.py", line 211, in extract_video_info
+    raise ValueError("No video URL found in the webpage")
+ValueError: No video URL found in the webpage
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "d:\Video Fetcher\gui\main_window.py", line 186, in download_video
+    video_info = self.video_extractor.extract_video_info(url)
+  File "d:\Video Fetcher\downloader\video_extractor.py", line 215, in extract_video_info
+    raise Exception(f"Failed to extract video info: {str(e)}")
+Exception: Failed to extract video info: No video URL found in the webpage
+
