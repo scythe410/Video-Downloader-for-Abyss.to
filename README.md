@@ -100,9 +100,6 @@ If you encounter any issues:
 3. Ensure all dependencies are installed correctly
 4. Check the application logs in the terminal
 
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Disclaimer
 
